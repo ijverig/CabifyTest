@@ -2,10 +2,20 @@ require './checkout'
 require './pricingscheme'
 
 # test set setup
+# this syntax is explained in pricingsceme.rb
 prices = {
-    "VOUCHER"   => 5.00,
-    "TSHIRT"    => 20.00,
-    "MUG"       => 7.50
+    "VOUCHER"   => {
+        1   => 5.00
+    },
+
+    "TSHIRT"    => {
+        1   => 20.00,
+        3   => 19.00
+    },
+
+    "MUG"       => {
+        1   => 7.50
+    }
 }
 pricing_rules = PricingScheme.new(prices)
 
