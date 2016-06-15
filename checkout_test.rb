@@ -7,7 +7,7 @@ prices = {
     "TSHIRT"    => 20.00,
     "MUG"       => 7.50
 }
-pricing_rules = PricingScheme.new
+pricing_rules = PricingScheme.new(prices)
 
 # test case 1
 co = Checkout.new(pricing_rules)
