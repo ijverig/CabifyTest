@@ -1,6 +1,6 @@
 class Checkout
-    def initialize(prices)
-        @prices = prices
+    def initialize(pricing_rules)
+        @pricing_rules = pricing_rules
         @items = Hash.new(0)
     end
 
@@ -15,17 +15,11 @@ class Checkout
 
         total = 0
 
+        # order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
         @items.each do |item, quantity|
             puts "#{item}: #{quantity}"
 
-            total += case item
-            when "VOUCHER"
-                5 * (quantity / 2.0).ceil
-            when "TSHIRT"
-                (quantity >= 3 ? 19 : 20) * quantity
-            when "MUG"
-                7.50 * quantity
-            end
+            total += @pricing_rules.price_for(item, quantity)
         end
 
         puts "Total: %.2f" % [total]
