@@ -1,4 +1,8 @@
 class PricingScheme
+    def initialize(prices)
+        @prices = prices
+    end
+
     def price_for(item, quantity)
         case item
         when "VOUCHER"
@@ -11,7 +15,11 @@ class PricingScheme
     end
 
     def rule2for1(quantity)
-        # pairs + remainders
-        (quantity / 2) + (quantity % 2)
+        ruleXforY(2, 1, quantity)
+    end
+
+    def ruleXforY(x, y, quantity)
+        # groups of X + remainders
+        ((quantity / x) * y) + (quantity % x)
     end
 end
