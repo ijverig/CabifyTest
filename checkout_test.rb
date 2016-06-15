@@ -3,21 +3,27 @@ require './pricingscheme'
 
 # test set setup
 # this syntax is explained in pricingsceme.rb
-prices = {
-    "VOUCHER"   => {
-        1   => 5.00
+rules = {
+    :pricing => {
+        "VOUCHER"   => {
+            1   => 5.00
+        },
+
+        "TSHIRT"    => {
+            1   => 20.00,
+            3   => 19.00
+        },
+
+        "MUG"       => {
+            1   => 7.50
+        }
     },
 
-    "TSHIRT"    => {
-        1   => 20.00,
-        3   => 19.00
-    },
-
-    "MUG"       => {
-        1   => 7.50
+    :quantity => {
+        "VOUCHER"   => [2,1]
     }
 }
-pricing_rules = PricingScheme.new(prices)
+pricing_rules = PricingScheme.new(rules)
 
 # test case 1
 co = Checkout.new(pricing_rules)
